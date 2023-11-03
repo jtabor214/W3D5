@@ -10,14 +10,14 @@ class PolyTreeNode
     @children = []
   end   
 
-  def parent=(parent_node)
-        #return self if self.parent == parent_node
+  def parent=(new_parent)
+        #return self if self.parent == new_parent
         #deattach from the current parent so we can reassign to the new parent
         if self.parent
             self.parent.children.delete(self)
         end
 
-        @parent = parent_node
+        @parent = new_parent
         self.parent.children << self unless self.parent.nil?
   end  
 
@@ -26,6 +26,9 @@ class PolyTreeNode
   end
   
   def remove_child(child)
+    child.parent = nil
+    raise "not a child" unless self.children.include?(child)
   end
+
 end
 
