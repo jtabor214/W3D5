@@ -1,3 +1,5 @@
+require_relative "knight_path_finder"
+
 class KnightPathFinder
 
     MOVES = [
@@ -28,7 +30,6 @@ class KnightPathFinder
         def initialize(position)
           @root_node = PolyTreeNode.new(position)
           @considered_positions = [position]
-
           build_move_tree
         end
 
@@ -36,12 +37,11 @@ class KnightPathFinder
           if KnightPathFinder.valid_moves.include?(pos) && !@considered_positions.include?(pos)
              @considered_positions.push(pos)
           end
-
           @considered_positions
         end 
 
         def build_move_tree
-          
+           # self.bfs([7, 7])
         end
 
 end
