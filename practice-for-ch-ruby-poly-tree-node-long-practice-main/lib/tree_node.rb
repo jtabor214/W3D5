@@ -30,5 +30,32 @@ class PolyTreeNode
     raise "not a child" unless self.children.include?(child)
   end
 
+  def dfs(target)
+    return self if self.value == target
+
+    @children.each do |child|
+      result = child.dfs(target)
+      return result if !result.nil? 
+    end
+    nil
+  end
+
+  def bfs(target)
+    # return self if self.value == target
+    queue = [self]
+
+    while !queue.empty?
+      node = queue.shift
+      
+      # node.bfs(target)
+      if node.value == target
+        return node
+      else
+        node.children.each {|child_node| queue << child_node }
+      end
+
+    end
+    nil
+  end
 end
 
